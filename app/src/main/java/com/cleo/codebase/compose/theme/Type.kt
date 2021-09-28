@@ -1,4 +1,4 @@
-package com.cleo.codebase.ui.theme
+package com.cleo.codebase.compose.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

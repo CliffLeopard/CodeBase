@@ -1,4 +1,4 @@
-package com.cleo.codebase.ui.theme
+package com.cleo.codebase.compose.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
