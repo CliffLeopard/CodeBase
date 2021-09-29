@@ -14,5 +14,4 @@ class CodeBasePlugin : Plugin<Project> {
     override fun apply(project: Project) {
 
     }
-
 }
