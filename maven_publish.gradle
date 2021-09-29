@@ -1,0 +1,36 @@
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            from(components['java'])
+            groupId = rootProject.ext.CODE_BASE_GROUP
+            artifactId = project.name
+            version = rootProject.ext.CODE_BASE_VERSION
+        }
+    }
+//    repositories {
+//        maven {
+//            url getSnapshotRepositoryUrl()
+//            credentials {
+//                username getRepositoryUsername()
+//                password getRepositoryPassword()
+//            }
+//        }
+//    }
+}
+
+signing {
+    sign publishing.publications.release
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+

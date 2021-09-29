@@ -1,0 +1,15 @@
+project.ext {
+    compose_version = '1.0.2'
+    kotlin_version  = '1.5.21'
+    agp_version     = '7.0.2'
+    work_version    = '2.4.0'
+    ASM_VERSION     = '9.2'
+
+    CODE_BASE_GROUP         =  'com.cleo.codebase'
+    CODE_BASE_VERSION       =  "1.0.0-SNAPSHOT"
+    PLUGIN_PUBLISH_VERSION  =  '0.16.0'
+    CODE_BASE_SITE          =  'https://github.com/CliffLeopard/RePlugin'
+    CODE_BASE_GIT_URL       =  'https://github.com/CliffLeopard/RePlugin'
+    CODE_BASE_DESC          =  'Interesting Code'
+    CB_DISPLAY_NAME         =  'CodeBasePlugin'
+}

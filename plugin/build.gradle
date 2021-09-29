@@ -1,0 +1,40 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'com.gradle.plugin-publish' version "${PLUGIN_PUBLISH_VERSION}"
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.android.tools.build:gradle:$agp_version"
+    implementation platform('org.jetbrains.kotlin:kotlin-bom')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation "org.ow2.asm:asm:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-tree:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-util:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-analysis:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-commons:$ASM_VERSION"
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
+
+
+gradlePlugin {
+    plugins {
+        'codebase-plugin' {
+            id = 'codebase-plugin'
+            displayName = 'codebase-plugin'
+            description = rootProject.ext.CODE_BASE_DESC
+            implementationClass = 'com.cleo.codebase.plugin.CodeBasePlugin'
+        }
+    }
+}
+
+apply from: '../maven_publish.gradle'
+//apply from: '../plugin_publish.gradle'
