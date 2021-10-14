@@ -9,4 +9,5 @@ package com.cleo.codebase.plugin
  */
 object CodeConstants {
     const val pluginName = "CodePlugin"
+    const val pluginConfig = "codeConfig"
 }

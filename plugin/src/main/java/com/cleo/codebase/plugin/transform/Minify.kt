@@ -48,6 +48,5 @@ abstract class Minify : TransformAction<Minify.Parameters> {
 
     private fun minify(artifact: File, keepClasses: Set<String>, jarFile: File) {
         println("Minifying ${artifact.name}")
-        // Implementation ...
     }
 }

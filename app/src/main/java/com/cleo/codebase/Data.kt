@@ -1,5 +1,10 @@
 package com.cleo.codebase
 
+import com.cleo.codebase.cases.CaseActivity01
+import com.cleo.codebase.cases.lam.LambdaActivity
+import com.cleo.codebase.cases.loader.ClassLoaderActivity
+import com.cleo.codebase.cases.start.StartActivity
+
 /**
  * author:gaoguanling
  * date:2021/9/28
@@ -9,24 +14,10 @@ package com.cleo.codebase
  */
 object Data {
     val cases = listOf(
-        "Case01" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case02" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case03" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case04" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case05" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case06" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case07" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case08" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case09" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case10" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case11" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case12" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case13" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case14" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case15" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case16" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case17" to "com.cleo.codebase.cases.CaseActivity01",
-        "Case18" to "com.cleo.codebase.cases.CaseActivity01",
+        "LambdaActivity" to LambdaActivity::class.java.name,
+        "StartActivity" to StartActivity::class.java.name,
+        "CaseActivity01" to CaseActivity01::class.java.name,
+        "ClassLoaderCases" to ClassLoaderActivity::class.java.name
     )
-    const val  pkgName = "com.cleo.codebase"
+    const val pkgName = "com.cleo.codebase"
 }

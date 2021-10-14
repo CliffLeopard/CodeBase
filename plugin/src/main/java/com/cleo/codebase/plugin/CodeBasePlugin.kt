@@ -1,6 +1,8 @@
 package com.cleo.codebase.plugin
 
-import org.gradle.api.Plugin
+import com.android.build.gradle.AppExtension
+import com.qihoo360.replugin.AbstractPlugin
+import com.qihoo360.replugin.transform.AbstractTransform
 import org.gradle.api.Project
 
 /**
@@ -10,8 +12,28 @@ import org.gradle.api.Project
  * email:gaoguanling@360.cn
  * link:
  */
-class CodeBasePlugin : Plugin<Project> {
-    override fun apply(project: Project) {
+open class CodeBasePlugin : AbstractPlugin<CodeBaseExtension>() {
+    override fun createExtension(project: Project) {
+        project.extensions.create(CodeConstants.pluginConfig, CodeBaseExtension::class.java)
+    }
 
+    override fun initExtension(project: Project, android: AppExtension) {
+        extension = project.extensions.getByName(CodeConstants.pluginConfig) as CodeBaseExtension
+        if (extension == null)
+            throw Exception("请在build.gradle 文件中配置 codeConfig!!")
+        else
+            extension!!.applicationId = android.defaultConfig.applicationId
+    }
+
+    override fun registerProjectTask(
+        project: Project,
+        android: AppExtension,
+        extension: CodeBaseExtension
+    ) {
+
+    }
+
+    override fun getTransform(project: Project, android: AppExtension): AbstractTransform? {
+        return CodeTransform(android, extension!!)
     }
 }

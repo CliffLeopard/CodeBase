@@ -1,8 +1,10 @@
 package com.cleo.codebase.plugin
 
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Transform
-import com.android.build.gradle.internal.pipeline.TransformManager
+import com.android.build.gradle.AppExtension
+import com.cleo.codebase.plugin.cv.CodeClassReWriter
+import com.qihoo360.replugin.config.BaseExtension
+import com.qihoo360.replugin.transform.AbstractTransform
+import com.qihoo360.replugin.transform.bean.TransformClassInfo
 
 /**
  * author:gaoguanling
@@ -11,18 +13,17 @@ import com.android.build.gradle.internal.pipeline.TransformManager
  * email:gaoguanling@360.cn
  * link:
  */
-class CodeTransform : Transform() {
-    override fun getName(): String = CodeConstants.pluginName
-
-    override fun getInputTypes(): MutableSet<QualifiedContent.ContentType> {
-        return TransformManager.CONTENT_CLASS
-    }
-
-    override fun getScopes(): MutableSet<in QualifiedContent.Scope> {
-        return TransformManager.SCOPE_FULL_PROJECT
-    }
+open class CodeTransform(appExtension: AppExtension, extension: BaseExtension) :
+    AbstractTransform(appExtension, extension) {
 
     override fun isIncremental(): Boolean {
         return true
+    }
+
+    override fun transformClass(classInfo: TransformClassInfo, inputBytes: ByteArray): ByteArray? {
+        if (classInfo.name.contains("com/cleo/codebase/cases/lam"))
+            Log.i("CodeTransform", classInfo.name)
+
+        return CodeClassReWriter.transform(classInfo, inputBytes, extension)
     }
 }

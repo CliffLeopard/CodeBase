@@ -1,0 +1,20 @@
+package com.cleo.codebase.cases.loader.replaced
+
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.cleo.codebase.R
+import com.cleo.codebase.cases.loader.ClassLoaderActivity
+
+/**
+* 修改后缀名为.kt,编译之后在class文件通过d8编译器转化为.dex的包
+*/
+class DyKtActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_dynamic)
+        Log.e(ClassLoaderActivity.tag, this.javaClass.classLoader.toString())
+        Toast.makeText(this, "这是内置的Kotlin Activity", Toast.LENGTH_LONG).show()
+    }
+}

@@ -1,10 +1,23 @@
 project.ext {
-    compose_version = '1.0.2'
-    kotlin_version  = '1.5.21'
+    compose_version = '1.0.3'
+    kotlin_version  = '1.5.31'
     agp_version     = '7.0.2'
-    work_version    = '2.4.0'
+    work_version    = '2.6.0'
     ASM_VERSION     = '9.2'
 
+    core_ktx        = '1.6.0'
+    lifecycle       = '2.3.1'
+    navigation      = '2.3.5'
+    fragment_ktx    = '1.3.6'
+    appcompat       = '1.3.1'
+    constraintlayout= '2.1.1'
+    material        = '1.4.0'
+    activity_compose= '1.4.0-beta01'
+    junit           = '4.13.2'
+    androidx_junit  = '1.1.3'
+    espresso        = '3.4.0'
+
+    RP_VERSION              =  '2.3.9-SNAPSHOT'
     CODE_BASE_GROUP         =  'com.cleo.codebase'
     CODE_BASE_VERSION       =  "1.0.0-SNAPSHOT"
     PLUGIN_PUBLISH_VERSION  =  '0.16.0'

@@ -1,0 +1,18 @@
+buildscript {
+    apply from: '../version_config.gradle'
+}
+plugins {
+    id 'java-gradle-plugin'
+}
+repositories {
+    mavenCentral()
+    google()
+}
+dependencies {
+    implementation "com.android.tools.build:gradle:$agp_version"
+    implementation "org.ow2.asm:asm:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-tree:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-util:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-analysis:$ASM_VERSION"
+    implementation "org.ow2.asm:asm-commons:$ASM_VERSION"
+}

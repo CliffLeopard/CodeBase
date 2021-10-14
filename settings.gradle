@@ -3,8 +3,17 @@
 //    repositories {
 //        google()
 //        mavenCentral()
+//        mavenLocal()
+//        maven {
+//            url = uri("https://plugins.gradle.org/m2/")
+//        }
 //    }
 //}
 rootProject.name = "CodeBase"
-include ':app'
+if (PUBLISH == "false") {
+    include ':app'
+}
 include ':plugin'
+include ':library'
+include ':plugin-app'
+include ':test'

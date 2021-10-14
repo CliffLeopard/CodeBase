@@ -6,15 +6,11 @@ plugins {
     id 'signing'
 }
 
-repositories {
-    google()
-    mavenCentral()
-}
-
 dependencies {
     implementation "com.android.tools.build:gradle:$agp_version"
     implementation platform('org.jetbrains.kotlin:kotlin-bom')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation "com.qihoo360.replugin:replugin-gradle:$RP_VERSION"
     implementation "org.ow2.asm:asm:$ASM_VERSION"
     implementation "org.ow2.asm:asm-tree:$ASM_VERSION"
     implementation "org.ow2.asm:asm-util:$ASM_VERSION"
