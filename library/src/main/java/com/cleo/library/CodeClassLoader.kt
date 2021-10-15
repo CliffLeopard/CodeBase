@@ -17,17 +17,16 @@ open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, paren
     PathClassLoader(dexPath, parent) {
     companion object {
         const val tag = "CodeClassLoader"
-        const val dexDir = "dex"
     }
 
     private val dynamicClass = mutableMapOf<String, DynamicClassData>()
 
-    fun loadClassFromChildClassLoader(name: String?, resolve: Boolean): Class<*>? {
-        return super.loadClass(name, resolve)
+    fun addDynamicActivity(placeHolderName: String, targetName: String) {
+        dynamicClass[placeHolderName] = DynamicClassData(placeHolderName, targetName)
     }
 
-    fun loadClassFromChildClassLoader(name: String?): Class<*>? {
-        return super.loadClass(name)
+    fun loadClassFromChildClassLoader(name: String?, resolve: Boolean): Class<*>? {
+        return super.loadClass(name, resolve)
     }
 
     fun getResourceFromChildClassLoader(name: String?): URL? {
@@ -36,18 +35,6 @@ open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, paren
 
     fun getResourcesFromChildClassLoader(name: String?): Enumeration<URL> {
         return super.getResources(name)
-    }
-
-    override fun loadClass(name: String?): Class<*>? {
-        var clazz: Class<*>?
-        try {
-            clazz = super.loadClass(name)
-        } catch (cnf: ClassNotFoundException) {
-            val method = ReflectUtils.getMethod(son?.javaClass, "findClass", String::class.java)
-            method.isAccessible = true
-            clazz = method.invoke(son, name) as Class<*>?
-        }
-        return clazz
     }
 
     override fun loadClass(name: String?, resolve: Boolean): Class<*>? {
@@ -73,14 +60,17 @@ open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, paren
     }
 
     override fun getResources(name: String?): Enumeration<URL> {
-        val tmp = arrayOfNulls<Enumeration<*>?>(2) as Array<Enumeration<URL>?>
+        val tmp = arrayOfNulls<Enumeration<URL>?>(2)
         tmp[0] = super.getResources(name)
         val method = ReflectUtils.getMethod(son?.javaClass, "findResources", String::class.java)
         tmp[1] = method.invoke(son, name) as Enumeration<URL>?
-        return sun.misc.CompoundEnumeration(tmp)
+        return CompoundEnumeration(tmp)
     }
 
     override fun findClass(name: String?): Class<*> {
+        dynamicClass[name]?.let {
+            return super.findClass(it.targetName)
+        }
         return super.findClass(name)
     }
 }

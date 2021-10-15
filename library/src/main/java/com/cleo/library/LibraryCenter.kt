@@ -1,10 +1,10 @@
 package com.cleo.library
 
 import android.content.Context
+import android.content.Intent
 import com.cleo.library.util.AssetsHelper
 import com.cleo.library.util.ReflectUtils
 import java.io.File
-import java.io.FileOutputStream
 
 /**
  * author:gaoguanling
@@ -14,45 +14,57 @@ import java.io.FileOutputStream
  * link:
  */
 object LibraryCenter {
-
-    private val dexFiles = setOf(
-        "d8-hello.dex",
-        "d8-son.dex",
-        "d8-ktson.dex",
-        "d8-java-activity.dex",
-        "d8-kt-activity.dex"
+    private const val cacheDexDir = "dex"
+    private const val assetsDexDir = "plugins"
+    private lateinit var codeClassLoader: CodeClassLoader
+    private val dynamicActivities = mapOf(
+        "com.cleo.codebase.cases.loader.replaced.DyKtActivity" to "this.is.dynamic.activity"
     )
 
     fun initLibrary(context: Context) {
         AssetsHelper.initAssets(context)
+        changeClassLoader()
+        dynamicActivities.forEach { (targetName, placeHolderName) ->
+            addDynamicActivity(placeHolderName, targetName)
+        }
+    }
+
+    fun startActivity(context: Context, intent: Intent) {
+        val componentName = intent.component
+        if (componentName != null) {
+            val className = componentName.className
+            if (dynamicActivities.containsKey(className)) {
+                val newClassName = dynamicActivities[className]!!
+                intent.setClassName(componentName.packageName, newClassName)
+            }
+        }
+        context.startActivity(intent)
+    }
+
+    private fun addDynamicActivity(placeHolderName: String, targetName: String) {
+        codeClassLoader.addDynamicActivity(placeHolderName, targetName)
+    }
+
+    // 形成 PathClassLoader --> ShadowClassLoader --> CodeClassLoader 的层级加载逻辑
+    private fun changeClassLoader() {
         val systemClassLoader = this.javaClass.classLoader
-        val dexPath = addDynamicClassByDx(context)
-        val codeClassLoader =
+        val dexPath = addDynamicClassByDx()
+        codeClassLoader =
             LogClassLoader(dexPath, systemClassLoader, systemClassLoader?.parent)
         val shadowClassLoader = ShadowClassLoader(codeClassLoader)
-        setClassLoader(systemClassLoader, shadowClassLoader)
-    }
 
-    private fun setClassLoader(son: ClassLoader?, parent: ClassLoader) {
-        val field = ReflectUtils.getField(son?.javaClass, "parent")
+        val field = ReflectUtils.getField(systemClassLoader?.javaClass, "parent")
         field.isAccessible = true
-        field.set(son, parent)
+        field.set(systemClassLoader, shadowClassLoader)
     }
 
-    private fun addDynamicClassByDx(context: Context): String {
+    /**
+     * 将assets中的文件复制到应用私有存储空间，并返回合并后的文件路径地址
+     */
+    private fun addDynamicClassByDx(): String {
         var dexPaths = ""
-        dexFiles.forEach { dexFileName ->
-            val byteArray = AssetsHelper.readAssets(dexFileName)!!
-            val cacheDir = context.cacheDir
-            val file = File(cacheDir.absolutePath + File.separator + CodeClassLoader.dexDir)
-            if (!file.exists()) {
-                file.mkdirs()
-            }
-            val dexPath = file.absolutePath + File.separator + dexFileName
-            dexPaths = dexPaths + dexPath + File.pathSeparator
-            FileOutputStream(dexPath).use {
-                it.write(byteArray)
-            }
+        AssetsHelper.copyAssetsPathToCache(assetsDexDir, cacheDexDir)?.forEach {
+            dexPaths = dexPaths + it + File.pathSeparator
         }
         return dexPaths.removeSuffix(File.pathSeparator)
     }

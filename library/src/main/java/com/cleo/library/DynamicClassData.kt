@@ -8,10 +8,8 @@ package com.cleo.library
  * link:
  */
 data class DynamicClassData(
-    val name: String,
-    val data: ByteArray,
-    val off: Int,
-    val len: Int
+    val placeHolderName: String,
+    val targetName: String
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -19,17 +17,15 @@ data class DynamicClassData(
 
         other as DynamicClassData
 
-        if (name != other.name) return false
-        if (off != other.off) return false
-        if (len != other.len) return false
+        if (placeHolderName != other.placeHolderName) return false
+        if (targetName != other.targetName) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + off
-        result = 31 * result + len
+        var result = placeHolderName.hashCode()
+        result = 31 * result + targetName.hashCode()
         return result
     }
 }

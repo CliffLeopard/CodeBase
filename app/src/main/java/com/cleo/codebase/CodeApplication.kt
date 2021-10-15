@@ -3,9 +3,7 @@ package com.cleo.codebase
 import android.app.Application
 import android.content.Context
 import com.cleo.codebase.dynamic.DynamicActivityDump
-import com.cleo.library.DynamicClassData
 import com.cleo.library.LibraryCenter
-import com.cleo.library.util.AssetsHelper
 
 /**
  * author:gaoguanling
@@ -18,10 +16,6 @@ class CodeApplication : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         initLibrary()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
     }
 
     private fun initLibrary() {

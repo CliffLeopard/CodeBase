@@ -13,10 +13,6 @@ import java.util.*
  *
  */
 class ShadowClassLoader(private val theParent: CodeClassLoader) : PathClassLoader("", theParent) {
-    override fun loadClass(name: String?): Class<*>? {
-        return theParent.loadClassFromChildClassLoader(name)
-    }
-
     override fun loadClass(name: String?, resolve: Boolean): Class<*>? {
         return theParent.loadClassFromChildClassLoader(name, resolve)
     }

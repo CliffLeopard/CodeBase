@@ -45,7 +45,7 @@
             android:name=".compose.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".cases.loader.replaced.DyKtActivity"
+            android:name="this.is.dynamic.activity"
             android:exported="true" />
         <activity
             android:name=".cases.loader.replaced.DyJavaActivity"

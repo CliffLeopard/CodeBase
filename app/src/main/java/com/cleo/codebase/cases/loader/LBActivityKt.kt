@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.cleo.codebase.Data
 import com.cleo.codebase.cases.ActionButton
+import com.cleo.library.LibraryCenter
 
 /**
  * author:gaoguanling
@@ -19,9 +20,9 @@ class LBActivityKt(context: Context) : ActionButton(context) {
             val intent = Intent()
             intent.setClassName(
                 Data.pkgName,
-                "com.cleo.codebase.cases.loader.replaced.DyKtActivity"
+                "com.cleo.codebase.cases.loader.replaced.DyKtActivity" //"com.cleo.codebase.cases.loader.replaced.DyKtActivity"
             )
-            context.startActivity(intent)
+            LibraryCenter.startActivity(context, intent)
         }
     }
 }
