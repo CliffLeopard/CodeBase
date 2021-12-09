@@ -22,4 +22,11 @@
     <style name="Theme.CodeBase.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CodeBase.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CommonStyle1" parent="Theme.CodeBase">
+        <item name="mystyle1">@drawable/setting</item>
+    </style>
+    <style name="CommonStyle2" parent="Theme.CodeBase">
+        <item name="mystyle2">@drawable/setting</item>
+    </style>
 </resources>

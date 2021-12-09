@@ -25,4 +25,6 @@ class LBActivityKt(context: Context) : ActionButton(context) {
             LibraryCenter.startActivity(context, intent)
         }
     }
+
+    override fun labelName(): String = "从Assets中加载KotlinActivity"
 }

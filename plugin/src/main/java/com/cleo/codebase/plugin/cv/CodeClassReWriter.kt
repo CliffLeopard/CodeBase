@@ -2,9 +2,9 @@ package com.cleo.codebase.plugin.cv
 
 import com.cleo.codebase.plugin.Log
 import com.qihoo360.replugin.config.BaseExtension
+import com.qihoo360.replugin.transform.bean.InstrumentationContext
 import com.qihoo360.replugin.transform.bean.TransformClassInfo
 import com.qihoo360.replugin.transform.visitor.FilterClassVisitor
-import com.qihoo360.replugin.transform.visitor.InstrumentationContext
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.util.CheckClassAdapter

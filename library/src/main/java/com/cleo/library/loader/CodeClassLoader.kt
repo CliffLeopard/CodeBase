@@ -1,4 +1,4 @@
-package com.cleo.library
+package com.cleo.library.loader
 
 import com.cleo.library.util.ReflectUtils
 import dalvik.system.PathClassLoader

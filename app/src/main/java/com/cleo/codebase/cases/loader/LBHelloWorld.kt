@@ -26,4 +26,5 @@ class LBHelloWorld(context: Context) : ActionButton(context) {
                 .show()
         }
     }
+    override fun labelName(): String = "从Assets中加载简单HelloWord"
 }

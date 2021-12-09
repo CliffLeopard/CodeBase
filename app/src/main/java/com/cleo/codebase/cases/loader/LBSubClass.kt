@@ -32,4 +32,6 @@ class LBSubClass(context: Context) : ActionButton(context) {
             Log.e(ClassLoaderActivity.tag, ktSon.showLoader())
         }
     }
+
+    override fun labelName(): String = "从Assets中加载父类在宿主中的子类"
 }

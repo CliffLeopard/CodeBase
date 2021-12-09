@@ -1,4 +1,4 @@
-package com.cleo.library
+package com.cleo.library.loader
 
 import dalvik.system.PathClassLoader
 import java.net.URL

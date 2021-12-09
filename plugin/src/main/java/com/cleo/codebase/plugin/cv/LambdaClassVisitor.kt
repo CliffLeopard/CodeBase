@@ -1,6 +1,6 @@
 package com.cleo.codebase.plugin.cv
 
-import com.qihoo360.replugin.transform.visitor.InstrumentationContext
+import com.qihoo360.replugin.transform.bean.InstrumentationContext
 import com.qihoo360.replugin.transform.visitor.PluginClassVisitor
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor

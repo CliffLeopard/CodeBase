@@ -1,6 +1,6 @@
 package com.cleo.codebase.plugin.cv
 
-import com.qihoo360.replugin.transform.visitor.InstrumentationContext
+import com.qihoo360.replugin.transform.bean.InstrumentationContext
 import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
 

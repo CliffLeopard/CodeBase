@@ -2,6 +2,9 @@ package com.cleo.library
 
 import android.content.Context
 import android.content.Intent
+import com.cleo.library.loader.CodeClassLoader
+import com.cleo.library.loader.LogClassLoader
+import com.cleo.library.loader.ShadowClassLoader
 import com.cleo.library.util.AssetsHelper
 import com.cleo.library.util.ReflectUtils
 import java.io.File
@@ -18,7 +21,8 @@ object LibraryCenter {
     private const val assetsDexDir = "plugins"
     private lateinit var codeClassLoader: CodeClassLoader
     private val dynamicActivities = mapOf(
-        "com.cleo.codebase.cases.loader.replaced.DyKtActivity" to "this.is.dynamic.activity"
+        "com.cleo.codebase.cases.loader.replaced.DyKtActivity" to "this.is.dynamic.activity",
+        "com.cleo.codebase.cases.service.DynamicService"       to "this.is.dynamic.service"
     )
 
     fun initLibrary(context: Context) {
@@ -27,6 +31,18 @@ object LibraryCenter {
         dynamicActivities.forEach { (targetName, placeHolderName) ->
             addDynamicActivity(placeHolderName, targetName)
         }
+    }
+
+    fun startService(context: Context,intent: Intent) {
+        val componentName = intent.component
+        if (componentName != null) {
+            val className = componentName.className
+            if (dynamicActivities.containsKey(className)) {
+                val newClassName = dynamicActivities[className]!!
+                intent.setClassName(componentName.packageName, newClassName)
+            }
+        }
+        context.startService(intent)
     }
 
     fun startActivity(context: Context, intent: Intent) {

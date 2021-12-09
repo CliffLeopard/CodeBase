@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 //    id 'codebase-plugin'
 }
 
@@ -76,6 +77,11 @@ dependencies {
 //        }
 //    }
 
+    implementation ("com.github.bumptech.glide:glide:4.12.0") {
+        exclude group: "com.android.support"
+    }
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
     implementation project(':library')
     implementation "org.ow2.asm:asm:$ASM_VERSION"
     implementation "org.ow2.asm:asm-tree:$ASM_VERSION"
@@ -99,6 +105,9 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$activity_compose"
+    implementation "androidx.annotation:annotation:$annotation"
+    implementation "androidx.slice:slice-builders:$slice"
+    implementation "androidx.slice:slice-core:$slice"
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.work:work-testing:$work_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_junit"

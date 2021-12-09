@@ -19,4 +19,5 @@ class LBActivityJava(context: Context) : ActionButton(context) {
             context.startActivity(intent)
         }
     }
+    override fun labelName(): String = "从Assets中加载JavaActivity"
 }
