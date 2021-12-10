@@ -8,6 +8,7 @@ import com.cleo.codebase.cases.provider.AboutProviderActivity
 import com.cleo.codebase.cases.service.AboutServiceActivity
 import com.cleo.codebase.cases.start.StartActivity
 import com.cleo.codebase.cases.theme.ThemeChangeActivity
+import com.cleo.codebase.cases.web.WebViewActivity
 
 /**
  * author:gaoguanling
@@ -25,7 +26,8 @@ object Data {
         "关于BroadCastReceiver" to AboutBroadActivity::class.java.name,
         "关于ContentProvider" to AboutProviderActivity::class.java.name,
         "关于主题资源" to ThemeChangeActivity::class.java.name,
-        "Glide" to GlideActivity::class.java.name
+        "Glide" to GlideActivity::class.java.name,
+        "WebView池化问题" to WebViewActivity::class.java.name
     )
     const val pkgName = "com.cleo.codebase"
 }

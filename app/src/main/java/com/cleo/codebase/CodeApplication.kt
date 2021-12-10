@@ -3,6 +3,7 @@ package com.cleo.codebase
 import android.app.Application
 import android.content.Context
 import com.cleo.codebase.dynamic.DynamicActivityDump
+import com.cleo.codebase.pool.WebViewCenter
 import com.cleo.library.LibraryCenter
 
 /**
@@ -15,7 +16,13 @@ import com.cleo.library.LibraryCenter
 class CodeApplication : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        app = this
         initLibrary()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        WebViewCenter.prePareWebView()
     }
 
     private fun initLibrary() {
@@ -25,5 +32,9 @@ class CodeApplication : Application() {
     private fun addDynamicClassByAsm() {
         val name = "com/cleo/codebase/cases/start/DynamicActivity"
         val byteArray = DynamicActivityDump.dump()
+    }
+
+    companion object {
+        lateinit var app: Application
     }
 }
