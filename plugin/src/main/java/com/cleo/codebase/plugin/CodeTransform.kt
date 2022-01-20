@@ -21,9 +21,8 @@ open class CodeTransform(appExtension: AppExtension, extension: BaseExtension) :
     }
 
     override fun transformClass(classInfo: TransformClassInfo, inputBytes: ByteArray): ByteArray? {
-        if (classInfo.name.contains("com/cleo/codebase/cases/lam"))
-            Log.i("CodeTransform", classInfo.name)
-
+//        if (classInfo.name.contains("com/cleo/codebase"))
+//            Log.i("CodeTransform", classInfo.name)
         return CodeClassReWriter.transform(classInfo, inputBytes, extension)
     }
 }

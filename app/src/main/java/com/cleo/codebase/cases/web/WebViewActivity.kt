@@ -16,7 +16,7 @@ import com.cleo.codebase.pool.WebViewCenter
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var container: LinearLayoutCompat
-    private lateinit var nowWebView: WebView
+    private var nowWebView: WebView? = null
     private val webViews = mutableListOf<WebView>()
     private val url = "https://www.baidu.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,15 +47,17 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (webViewCanGoBack()) {
-            nowWebView.goBack()
+            nowWebView?.goBack()
         } else {
             super.onBackPressed()
         }
     }
 
     private fun webViewCanGoBack(): Boolean {
-        Log.e("GGL", nowWebView.url!!)
-        return nowWebView != null && nowWebView.url != url
+        val canGoBack = nowWebView?.url != url
+        if (canGoBack)
+            Log.e("GGL", nowWebView?.url!!)
+        return canGoBack
     }
 
     @SuppressLint("SetJavaScriptEnabled")

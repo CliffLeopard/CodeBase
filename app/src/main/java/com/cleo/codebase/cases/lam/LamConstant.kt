@@ -1,8 +1,5 @@
 package com.cleo.codebase.cases.lam
 
-import android.util.Log
-import android.view.View
-
 /**
  * author:gaoguanling
  * date:2021/9/30
@@ -12,7 +9,4 @@ import android.view.View
  */
 object LamConstant {
     const val tag = "LambdaCases"
-    fun case4OnClick(view: View) {
-        Log.e(tag, "Click Me: case4OnClick")
-    }
 }

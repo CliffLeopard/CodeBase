@@ -21,4 +21,9 @@ object WrapperCenter {
     fun wrapOnClickAfter(view: View) {
         Log.e(LamConstant.tag, "wrapOnClickAfter")
     }
+
+    @JvmStatic
+    fun doNothing(view:View){
+
+    }
 }

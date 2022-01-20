@@ -19,12 +19,12 @@ import com.cleo.codebase.cases.web.WebViewActivity
  */
 object Data {
     val cases = listOf(
-        "LambdaActivity" to LambdaActivity::class.java.name,
-        "StartActivity" to StartActivity::class.java.name,
-        "ClassLoaderCases" to ClassLoaderActivity::class.java.name,
-        "关于Service" to AboutServiceActivity::class.java.name,
-        "关于BroadCastReceiver" to AboutBroadActivity::class.java.name,
-        "关于ContentProvider" to AboutProviderActivity::class.java.name,
+        "LambdaMethodHook" to LambdaActivity::class.java.name,
+        "插件Activity启动方式" to StartActivity::class.java.name,
+        "ClassLoader Activity和普通类" to ClassLoaderActivity::class.java.name,
+        "Service测试用例" to AboutServiceActivity::class.java.name,
+        "BroadCastReceiver测试用例" to AboutBroadActivity::class.java.name,
+        "ContentProvider测试用例" to AboutProviderActivity::class.java.name,
         "关于主题资源" to ThemeChangeActivity::class.java.name,
         "Glide" to GlideActivity::class.java.name,
         "WebView池化问题" to WebViewActivity::class.java.name

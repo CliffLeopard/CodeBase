@@ -39,14 +39,14 @@ object CodeClassReWriter {
             lambdaClassVisitor,
             ClassReader.SKIP_FRAMES or ClassReader.EXPAND_FRAMES
         )
-        if (context.classInfo.name.contains("com/cleo/codebase/cases"))
-            Log.i(tag, "${context.classInfo.name} is modified: ${context.classModified}")
+//        if (context.classInfo.name.contains("com/cleo/codebase"))
+//            Log.i(tag, "${context.classInfo.name} is modified: ${context.classModified}")
 
         return if (context.classModified) {
-            Log.i(
-                tag,
-                "ChangedClass:\n      class:${context.classInfo.name}\n      fromJar:${context.classInfo.fromJar}\n      toPath:${context.classInfo.toPath}"
-            )
+//            Log.i(
+//                tag,
+//                "ChangedClass:\n      class:${context.classInfo.name}\n      fromJar:${context.classInfo.fromJar}\n      toPath:${context.classInfo.toPath}"
+//            )
             classWriter.toByteArray()
         } else
             null

@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-//    id 'codebase-plugin'
+    id 'codebase-plugin'
 }
 
 android {
@@ -50,9 +50,9 @@ android {
     }
 }
 
-//codeConfig {
-//
-//}
+codeConfig {
+
+}
 
 //def artifactType = Attribute.of('artifactType', String)
 //def minified = Attribute.of('minified', Boolean)
@@ -67,7 +67,7 @@ dependencies {
 //        from.attribute(artifactType, 'jar')
 //        to.attribute(artifactType, 'java-classes-directory')
 //    }
-
+//
 //    registerTransform(com.cleo.codebase.plugin.transform.Minify) {
 //        from.attribute(minified, false).attribute(artifactType, "jar")
 //        to.attribute(minified, true).attribute(artifactType, "jar")

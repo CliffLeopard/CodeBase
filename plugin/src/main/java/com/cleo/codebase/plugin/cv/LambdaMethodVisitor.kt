@@ -21,8 +21,7 @@ class LambdaMethodVisitor(
     descriptor: String?
 ) : AdviceAdapter(Opcodes.ASM9, methodVisitor, access, name, descriptor) {
 
-    private val wrappedHandles = mutableSetOf<Handle>()
-    private val codeBaseHandleTail = "CodeWrapImpl"
+    private val wrappedHandles = mutableSetOf<ChangeState>()
     private var owner: String = ""
 
     override fun visitMethodInsn(
@@ -42,20 +41,19 @@ class LambdaMethodVisitor(
         bootstrapMethodHandle: Handle?,
         vararg bootstrapMethodArguments: Any?
     ) {
-        constant.classModified = true
         val methodType: Type = bootstrapMethodArguments[0] as Type
         val handle: Handle = bootstrapMethodArguments[1] as Handle
+        constant.classModified = true
         val changedHandle = Handle(
             handle.tag,
             handle.owner,
-            handle.name + codeBaseHandleTail,
+            getTargetMethodName(handle.owner, handle.name),
             handle.desc,
             handle.isInterface
         )
+        wrappedHandles.add(ChangeState(handle, changedHandle))
 
-        if (changedHandle.owner == constant.classInfo.name) {
-            wrappedHandles.add(changedHandle)
-        }
+        println("visitInvokeDynamicInsn:\nname:$name \ndescriptor:$descriptor\nmethodType:$methodType ")
         super.visitInvokeDynamicInsn(
             name,
             descriptor,
@@ -71,119 +69,66 @@ class LambdaMethodVisitor(
         createMethod(classVisitor)
     }
 
-
     private fun createMethod(classVisitor: ClassVisitor) {
         val iterator = wrappedHandles.iterator()
         while (iterator.hasNext()) {
-            val handle = iterator.next()
-            var access = Opcodes.ACC_PRIVATE or Opcodes.ACC_FINAL
-            if (handle.tag == Opcodes.H_INVOKESTATIC) {
-                access = access or Opcodes.ACC_STATIC
-            }
+            val state = iterator.next()
+            val changedHandle = state.changedHandle
+            val originHandle = state.originHandle
 
-            val originVisitor = classVisitor.visitMethod(
-                access,
-                handle.name,
-                handle.desc,
-                null,
-                null
-            )
+            println("originHandler: name:${originHandle.name}")
 
-            val createMethodVisitor = LambdaMethodVisitor(
-                classVisitor, constant,
-                originVisitor,
-                Opcodes.ACC_PRIVATE or Opcodes.ACC_FINAL,
-                handle.name,
-                handle.desc
-            )
-            createMethodVisitor.visitCode()
+            val methodVisitor = classVisitor.visitMethod(Opcodes.ACC_PRIVATE or Opcodes.ACC_FINAL, changedHandle.name, changedHandle.desc, null, null)
+            println("Begin createMethod: owner:${originHandle.owner} originName:${originHandle.name} createName:${changedHandle.name}")
+
+            methodVisitor.visitCode()
             val label0 = Label()
-            createMethodVisitor.visitLabel(label0)
-
-
-            // visitBefore
-            createMethodVisitor.visitFieldInsn(
-                Opcodes.GETSTATIC,
-                "com/cleo/codebase/WrapperCenter",
-                "INSTANCE",
-                "Lcom/cleo/codebase/WrapperCenter;"
-            )
-            createMethodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
-            createMethodVisitor.visitMethodInsn(
-                Opcodes.INVOKEVIRTUAL,
+            methodVisitor.visitLabel(label0)
+            methodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
+            methodVisitor.visitMethodInsn(
+                Opcodes.INVOKESTATIC,
                 "com/cleo/codebase/WrapperCenter",
                 "wrapOnClickBefore",
                 "(Landroid/view/View;)V",
                 false
             )
-
-
-            // visitMethod
-            if (handle.tag == Opcodes.H_INVOKESTATIC) {
-                val staticMethod = handle.owner.split('$')
-                createMethodVisitor.visitFieldInsn(
-                    Opcodes.GETSTATIC,
-                    staticMethod[0],
-                    staticMethod[1],
-                    "L${staticMethod[0]}\$${staticMethod[1]};"
-                )
-                createMethodVisitor.visitVarInsn(ALOAD, 1)
-                createMethodVisitor.visitMethodInsn(
-                    Opcodes.INVOKESTATIC,
-                    handle.owner,
-                    handle.name.removeSuffix(codeBaseHandleTail),
-                    handle.desc,
-                    handle.isInterface
-                )
-            } else {
-                createMethodVisitor.visitVarInsn(Opcodes.ALOAD, 0)
-                createMethodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
-                createMethodVisitor.visitMethodInsn(
-                    Opcodes.INVOKESPECIAL,
-                    handle.owner,
-                    handle.name.removeSuffix(codeBaseHandleTail),
-                    handle.desc,
-                    handle.isInterface
-                )
-            }
-
-            // visitAfter
-            createMethodVisitor.visitFieldInsn(
-                Opcodes.GETSTATIC,
-                "com/cleo/codebase/WrapperCenter",
-                "INSTANCE",
-                "Lcom/cleo/codebase/WrapperCenter;"
+            methodVisitor.visitVarInsn(Opcodes.ALOAD, 0)
+            methodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
+            methodVisitor.visitMethodInsn(
+                Opcodes.INVOKESPECIAL,
+                originHandle.owner,
+                originHandle.name,
+                originHandle.desc,
+                originHandle.isInterface
             )
-            createMethodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
-            createMethodVisitor.visitMethodInsn(
-                Opcodes.INVOKEVIRTUAL,
+            methodVisitor.visitVarInsn(Opcodes.ALOAD, 1)
+            methodVisitor.visitMethodInsn(
+                Opcodes.INVOKESTATIC,
                 "com/cleo/codebase/WrapperCenter",
                 "wrapOnClickAfter",
                 "(Landroid/view/View;)V",
                 false
             )
-            createMethodVisitor.visitInsn(Opcodes.RETURN)
+            methodVisitor.visitInsn(Opcodes.RETURN)
+            val label1 = Label()
+            methodVisitor.visitLabel(label1)
+            methodVisitor.visitLocalVariable("this", "L${changedHandle.owner};", null, label0, label1, 0)
+            val arguments = Type.getType(changedHandle.desc).argumentTypes
+            arguments.forEachIndexed { index, arg ->
+                println("visitLocalVariable:${arg.descriptor} index:${index}")
+                methodVisitor.visitLocalVariable("var$index", arg.descriptor, null, label0, label1, 1 + index)
+            }
 
-            val label4 = Label()
-            createMethodVisitor.visitLabel(label4)
-            createMethodVisitor.visitLocalVariable(
-                "this",
-                "L$owner+;",
-                null,
-                label0,
-                label4,
-                0
-            )
-            createMethodVisitor.visitLocalVariable(
-                "view",
-                "Landroid/view/View;",
-                null,
-                label0,
-                label4,
-                1
-            )
-            createMethodVisitor.visitMaxs(2, 2)
-            createMethodVisitor.visitEnd()
+            methodVisitor.visitMaxs(2, 2)
+            methodVisitor.visitEnd()
+        }
+    }
+
+    data class ChangeState(val originHandle: Handle, val changedHandle: Handle)
+    companion object {
+        private const val codeBaseHandleTail = "CodeWrapImpl"
+        fun getTargetMethodName(owner: String, name: String): String {
+            return owner.replace('/', 'I') + name + codeBaseHandleTail
         }
     }
 }
