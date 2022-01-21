@@ -176,7 +176,13 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitLabel(label0);
             methodVisitor.visitLineNumber(24, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
-            methodVisitor.visitInvokeDynamicInsn("onClick", "()Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "case1$lambda-0", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn(
+                    "onClick",
+                    "()Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "case1$lambda-0", "(Landroid/view/View;)V", false),
+                    Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
@@ -249,7 +255,13 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitLineNumber(45, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
             methodVisitor.visitFieldInsn(GETSTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "Companion", "Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;");
-            methodVisitor.visitInvokeDynamicInsn("onClick", "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "target3", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn(
+                    "onClick",
+                    "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "target3", "(Landroid/view/View;)V", false),
+                    Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
@@ -269,7 +281,14 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitLineNumber(49, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
             methodVisitor.visitFieldInsn(GETSTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "Companion", "Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;");
-            methodVisitor.visitInvokeDynamicInsn("onClick", "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "gtCase3", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn(
+                    "onClick",
+                    "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "gtCase3", "(Landroid/view/View;)V", false),
+                    Type.getType("(Landroid/view/View;)V")
+            );
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
@@ -368,7 +387,12 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitFieldInsn(GETSTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "Companion", "Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;");
             methodVisitor.visitVarInsn(ALOAD, 1);
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "gtCase5", "(Lcom/cleo/codebase/cases/lam/Target;)Lkotlin/jvm/functions/Function1;", false);
-            methodVisitor.visitInvokeDynamicInsn("onClick", "(Lkotlin/jvm/functions/Function1;)Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "happy5$lambda-1", "(Lkotlin/jvm/functions/Function1;Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn(
+                    "onClick",
+                    "(Lkotlin/jvm/functions/Function1;)Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "happy5$lambda-1", "(Lkotlin/jvm/functions/Function1;Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label2 = new Label();
             methodVisitor.visitLabel(label2);
@@ -556,7 +580,10 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitLabel(label0);
             methodVisitor.visitLineNumber(112, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
-            methodVisitor.visitInvokeDynamicInsn("onClick", "()Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/TargetJava", "target10", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn("onClick", "()Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/TargetJava", "target10", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
@@ -576,7 +603,12 @@ public class HookedKotlinLamCasesDump implements Opcodes {
             methodVisitor.visitLineNumber(116, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
             methodVisitor.visitFieldInsn(GETSTATIC, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "Companion", "Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;");
-            methodVisitor.visitInvokeDynamicInsn("onClick", "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "gtCase10", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn(
+                    "onClick",
+                    "(Lcom/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion;)Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases$Companion", "gtCase10", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedKotlinLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);

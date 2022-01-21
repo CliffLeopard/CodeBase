@@ -1,19 +1,19 @@
 package com.cleo.codebase.cases.lam
-
-import android.content.Context
-import android.util.Log
-import android.view.View
-import com.cleo.codebase.WrapperCenter
-
-/**
- * author:gaoguanling
- * date:2022/1/20
- * time:14:08
- * email:gaoguanling@360.cn
- * link:
- */
-
-
+//
+//import android.content.Context
+//import android.util.Log
+//import android.view.View
+//import com.cleo.codebase.WrapperCenter
+//
+///**
+// * author:gaoguanling
+// * date:2022/1/20
+// * time:14:08
+// * email:gaoguanling@360.cn
+// * link:
+// */
+//
+//
 //class HookedKotlinLamCases(context: Context) : LambdaCase(context) {
 //    private val message = "KotlinLamCases"
 //    override fun asmCreateFunction(view: View) {}

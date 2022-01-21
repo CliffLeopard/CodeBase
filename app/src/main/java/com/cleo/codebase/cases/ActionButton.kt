@@ -1,6 +1,7 @@
 package com.cleo.codebase.cases
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.appcompat.widget.AppCompatButton
@@ -23,9 +24,13 @@ abstract class ActionButton(context: Context) : AppCompatButton(context) {
 
     private fun call() {
         initAction()
-        text = labelName()
+        val tittle = getTittle()
+        text = if (TextUtils.isEmpty(tittle)) labelName() else tittle
     }
 
     abstract fun initAction()
-    open fun labelName(): String = this::class.java.simpleName
+    open fun labelName(): String = this.javaClass.name
+    protected open fun getTittle(): String {
+        return ""
+    }
 }

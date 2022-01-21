@@ -24,6 +24,11 @@ open class BaseCaseActivity : AppCompatActivity() {
         container.addView(case)
     }
 
+    protected fun addCases(cases: List<ActionButton>) {
+        cases.forEach { container.addView(it) }
+    }
+
+
     protected open fun initView() {
 
     }
