@@ -10,4 +10,5 @@ import com.qihoo360.replugin.config.BaseExtension
  * link:
  */
 open class CodeBaseExtension : BaseExtension() {
+
 }

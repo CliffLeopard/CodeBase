@@ -14,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
  * email:gaoguanling@360.cn
  * link:
  */
-class RecyclerViewAdapter(
-    private val cases: List<Pair<String, String>>
-) :
-    RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder>() {
+class RecyclerViewAdapter(private val cases: List<Pair<String, String>>) : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewViewHolder>() {
 
     class RecyclerViewViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.item)
@@ -32,9 +29,9 @@ class RecyclerViewAdapter(
     override fun onBindViewHolder(holder: RecyclerViewViewHolder, position: Int) {
         val case = cases[position]
         holder.textView.text = case.first
-        holder.textView.setOnClickListener{
+        holder.textView.setOnClickListener {
             val intent = Intent()
-            intent.setClassName(Data.pkgName,case.second)
+            intent.setClassName(Data.pkgName, case.second)
             holder.textView.context.startActivity(intent)
         }
     }

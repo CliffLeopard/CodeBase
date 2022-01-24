@@ -10,4 +10,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="case_item">Demo Case</string>
     <string name="lam_click">Click Me</string>
+    <string name="channel_name">NotificationChannel</string>
+    <string name="channel_id">ChannelID</string>
+    <string name="channel_description">ChannelDesc</string>
+    <string name="notification_title">NotificationTittle</string>
+    <string name="notification_message">NotificationMessage</string>
+    <string name="ticker_text">NotificationText</string>
 </resources>

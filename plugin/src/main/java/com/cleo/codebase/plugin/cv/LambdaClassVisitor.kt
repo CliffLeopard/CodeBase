@@ -34,15 +34,8 @@ class LambdaClassVisitor(cv: ClassVisitor, context: InstrumentationContext) :
         exceptions: Array<out String>?
     ): MethodVisitor {
         val originMv = super.visitMethod(access, name, descriptor, signature, exceptions)
-        return if (context.classInfo.name.contains("com/cleo/codebase/cases/lam/"))
-            LambdaMethodVisitor(
-                this,
-                context,
-                originMv,
-                access,
-                name,
-                descriptor
-            )
+        return if (context.classInfo.name.contains("com/cleo/codebase/cases/lam"))
+            LambdaMethodVisitor(this, context, originMv, access, name, descriptor)
         else
             originMv
     }

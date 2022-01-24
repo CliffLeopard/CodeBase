@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cleo.codebase">
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".CodeApplication"
@@ -22,6 +23,7 @@
         <activity
             android:name=".cases.web.WebViewActivity"
             android:exported="false" />
+
         <activity
             android:name=".cases.GlideActivity"
             android:exported="false" />
@@ -74,11 +76,7 @@
             android:exported="true" />
         <activity
             android:name="this.is.dynamic.activity"
-            android:exported="true" /> <!-- <provider -->
-        <!-- android:name=".cases.provider.SimpleContentProvider" -->
-        <!-- android:authorities="com.cleo.simple.provider" -->
-        <!-- android:enabled="true" -->
-        <!-- android:exported="true" /> -->
+            android:exported="true" />
         <provider
             android:name=".cases.provider.SimpleSliceProvider"
             android:authorities="com.cleo.codebase.cases.provider"
@@ -93,12 +91,20 @@
                     android:pathPrefix="H"
                     android:scheme="http" />
             </intent-filter>
-        </provider>
-
+        </provider> <!-- <provider -->
+        <!-- android:name=".cases.provider.SimpleContentProvider" -->
+        <!-- android:authorities="com.cleo.simple.provider" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" /> -->
         <receiver
             android:name=".cases.broad.SimpleBroadCastReceiver"
             android:enabled="true"
             android:exported="true" />
+
+        <service
+            android:name=".cases.service.ForegroundService"
+            android:enabled="true"
+            android:exported="true"/>
 
         <service
             android:name=".cases.service.SimpleService"

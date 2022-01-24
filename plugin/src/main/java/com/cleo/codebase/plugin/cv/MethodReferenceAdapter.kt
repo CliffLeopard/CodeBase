@@ -118,7 +118,7 @@ class MethodReferenceAdapter(classVisitor: ClassVisitor?) : ClassNode(Opcodes.AS
         }
         val middleMethodType = Type.getType(middleMethodDesc)
         val argumentsType = middleMethodType.argumentTypes
-        if (argumentsType.size > 0) {
+        if (argumentsType.isNotEmpty()) {
             var loadIndex = 0
             for (tmpType in argumentsType) {
                 val opcode = tmpType.getOpcode(Opcodes.ILOAD)

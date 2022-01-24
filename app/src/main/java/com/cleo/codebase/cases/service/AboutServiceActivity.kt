@@ -10,5 +10,6 @@ class AboutServiceActivity : BaseCaseActivity() {
     override fun initView() {
         super.addCase(BtnOpenService(this))
         super.addCase(BtnDynamicService(this))
+        super.addCase(BtnForegroundService(this))
     }
 }

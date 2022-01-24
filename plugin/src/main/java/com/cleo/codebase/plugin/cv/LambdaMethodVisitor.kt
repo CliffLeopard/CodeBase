@@ -4,7 +4,6 @@ import com.qihoo360.replugin.transform.bean.InstrumentationContext
 import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
 
-
 /**
  * author:gaoguanling
  * date:2021/9/30
@@ -152,9 +151,9 @@ class LambdaMethodVisitor(
 
             val maxLocals = arguments.size + localIndex
             val maxStack = maxLocals + 1
-
             println("owner:${handle.owner} name:${handle.name} maxLocals:$maxLocals  maxStack:$maxStack")
             methodVisitor.visitMaxs(maxStack, maxLocals)
+//            methodVisitor.visitMaxs(0, 0)
             methodVisitor.visitEnd()
         }
     }

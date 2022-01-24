@@ -90,7 +90,7 @@ abstract class KotlinLamCases(context: Context) : LambdaCase(context) {
         }
 
         fun getAll(context: Context): List<KotlinLamCases> {
-            val list = listOf<KotlinLamCases>(
+            val list = listOf(
                 object : KotlinLamCases(context) {
                     override fun initAction() {
                         this.case1()
