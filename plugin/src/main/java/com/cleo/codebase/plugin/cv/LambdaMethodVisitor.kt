@@ -149,11 +149,11 @@ class LambdaMethodVisitor(
                 methodVisitor.visitLocalVariable("var$index", arg.descriptor, null, label0, label1, localIndex + index)
             }
 
-            val maxLocals = arguments.size + localIndex
-            val maxStack = maxLocals + 1
-            println("owner:${handle.owner} name:${handle.name} maxLocals:$maxLocals  maxStack:$maxStack")
-            methodVisitor.visitMaxs(maxStack, maxLocals)
-//            methodVisitor.visitMaxs(0, 0)
+//            val maxLocals = arguments.size + localIndex
+//            val maxStack = maxLocals + 1
+//            println("owner:${handle.owner} name:${handle.name} maxLocals:$maxLocals  maxStack:$maxStack")
+//            methodVisitor.visitMaxs(maxStack, maxLocals)
+            methodVisitor.visitMaxs(0, 0)
             methodVisitor.visitEnd()
         }
     }

@@ -7,7 +7,6 @@ import com.qihoo360.replugin.transform.bean.TransformClassInfo
 import com.qihoo360.replugin.transform.visitor.FilterClassVisitor
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
-import org.objectweb.asm.util.CheckClassAdapter
 
 /**
  * author:gaoguanling
@@ -33,24 +32,31 @@ object CodeClassReWriter {
             Log.detail(tag, "Skip: ${classInfo.name}")
             return null
         }
-        val verifierVisitor = CheckClassAdapter(classWriter)
-        val lambdaClassVisitor = LambdaClassVisitor(verifierVisitor, context)
+//        val verifierVisitor = CheckClassAdapter(classWriter)
+        val lambdaClassVisitor = LambdaClassVisitor(classWriter, context)
         classReader.accept(
             lambdaClassVisitor,
-            ClassReader.SKIP_FRAMES or ClassReader.EXPAND_FRAMES
+            ClassReader.EXPAND_FRAMES or ClassReader.SKIP_FRAMES
         )
         return if (context.classModified) {
             Log.i(
                 tag,
                 "ChangedClass:\n" +
-                     "class:${context.classInfo.name}\n" +
-                     "fromJar:${context.classInfo.fromJar}\n" +
-                     "toPath:${context.classInfo.toPath}\n" +
-                     "thread:${Thread.currentThread().name}"
+                        "class:${context.classInfo.name}\n" +
+                        "fromJar:${context.classInfo.fromJar}\n" +
+                        "toPath:${context.classInfo.toPath}\n" +
+                        "thread:${Thread.currentThread().name}"
             )
             classWriter.toByteArray()
-        } else
+        } else {
+            Log.i(
+                tag,
+                "NotChangedClass:\n" +
+                        "thread:${Thread.currentThread().name}"
+            )
             null
+        }
+
     }
 
     private fun filerClass(context: InstrumentationContext) {

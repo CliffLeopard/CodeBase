@@ -82,7 +82,12 @@ public class HookedJavaLamCasesDump implements Opcodes {
             methodVisitor.visitLabel(label0);
             methodVisitor.visitLineNumber(33, label0);
             methodVisitor.visitVarInsn(ALOAD, 0);
-            methodVisitor.visitInvokeDynamicInsn("onClick", "()Landroid/view/View$OnClickListener;", new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false), new Object[]{Type.getType("(Landroid/view/View;)V"), new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedJavaLamCases", "lambda$case1$0", "(Landroid/view/View;)V", false), Type.getType("(Landroid/view/View;)V")});
+            methodVisitor.visitInvokeDynamicInsn("onClick",
+                    "()Landroid/view/View$OnClickListener;",
+                    new Handle(Opcodes.H_INVOKESTATIC, "java/lang/invoke/LambdaMetafactory", "metafactory", "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false),
+                    Type.getType("(Landroid/view/View;)V"),
+                    new Handle(Opcodes.H_INVOKESTATIC, "com/cleo/codebase/cases/lam/HookedJavaLamCases", "lambda$case1$0", "(Landroid/view/View;)V", false),
+                    Type.getType("(Landroid/view/View;)V"));
             methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "com/cleo/codebase/cases/lam/HookedJavaLamCases", "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", false);
             Label label1 = new Label();
             methodVisitor.visitLabel(label1);
