@@ -2,6 +2,9 @@ package com.cleo.codebase.plugin
 
 import com.android.build.gradle.AppExtension
 import com.qihoo360.replugin.AbstractPlugin
+import com.qihoo360.replugin.hook.HookLambda
+import com.qihoo360.replugin.hook.HookMethod
+import com.qihoo360.replugin.hook.TargetClass
 import com.qihoo360.replugin.transform.AbstractTransform
 import org.gradle.api.Project
 
@@ -19,10 +22,14 @@ open class CodeBasePlugin : AbstractPlugin<CodeBaseExtension>() {
 
     override fun initExtension(project: Project, android: AppExtension) {
         extension = project.extensions.getByName(CodeConstants.pluginConfig) as CodeBaseExtension
-        if (extension == null)
-            throw Exception("请在build.gradle 文件中配置 codeConfig!!")
-        else
-            extension!!.applicationId = android.defaultConfig.applicationId
+    }
+
+    override fun configExtension(project: Project, android: AppExtension) {
+        super.configExtension(project, android)
+        extension?.excludedClasses = project.container(TargetClass::class.java)
+        extension?.skipClasses = project.container(TargetClass::class.java)
+        extension?.hookMethods = project.container(HookMethod::class.java)
+        extension?.hookLambdas = project.container(HookLambda::class.java)
     }
 
     override fun registerProjectTask(
