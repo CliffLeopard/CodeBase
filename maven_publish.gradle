@@ -23,9 +23,9 @@ publishing {
 //    }
 }
 
-signing {
-    sign publishing.publications.release
-}
+//signing {
+//    sign publishing.publications.release
+//}
 
 javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
