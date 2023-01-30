@@ -56,7 +56,7 @@ class WebViewActivity : AppCompatActivity() {
     private fun webViewCanGoBack(): Boolean {
         val canGoBack = nowWebView?.url != url
         if (canGoBack)
-            Log.e("GGL", nowWebView?.url!!)
+            nowWebView?.url?.let { Log.e("GGL", it) }
         return canGoBack
     }
 
