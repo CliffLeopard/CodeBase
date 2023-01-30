@@ -7,6 +7,7 @@ import com.cleo.library.loader.LogClassLoader
 import com.cleo.library.loader.ShadowClassLoader
 import com.cleo.library.util.AssetsHelper
 import com.cleo.library.util.ReflectUtils
+import dalvik.system.BaseDexClassLoader
 import java.io.File
 
 /**

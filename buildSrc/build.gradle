@@ -9,7 +9,7 @@ repositories {
     google()
 }
 dependencies {
-    implementation "com.android.tools.build:gradle:7.0.3"
+    implementation 'com.android.tools.build:gradle:7.4.0'
     implementation "org.ow2.asm:asm:$ASM_VERSION"
     implementation "org.ow2.asm:asm-tree:$ASM_VERSION"
     implementation "org.ow2.asm:asm-util:$ASM_VERSION"

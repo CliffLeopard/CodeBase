@@ -37,6 +37,19 @@ open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, paren
         return super.getResources(name)
     }
 
+    /**
+     * 当通过CodeClassLoader加载的类中加载新的类时，只会向上和本ClassLoader查找，不经原有的PathClassLoader
+     * 这就造成了，很多在PathLoader的dexPath中的类不能正常加载
+     *
+     * 所以使用ShadowClassLoader进行截断。
+     * 这样只有在通过CodeClassLoader加载的类中加载新的类才会调用loadClass方法
+     * 重载loadClass方法，正常路径找不到类时，调用PathClassLoader的findClass方法，补充成为原始的加载逻辑。
+     *
+     * 正常通过PathClassLoader查找时会走 loadClassFromChildClassLoader 方法，则不需要向下查找
+     *
+     * @param name: 类名
+     * @param resolve: kk
+     */
     override fun loadClass(name: String?, resolve: Boolean): Class<*>? {
         var clazz: Class<*>?
         try {
