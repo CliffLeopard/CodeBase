@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import com.cleo.codebase.cases.ActionButton
+import com.cleo.library.LibraryCenter
 
 /**
  * author:gaoguanling
@@ -23,7 +24,7 @@ abstract class StartButton(context: Context) : ActionButton(context) {
     private fun onClick(view: View) {
         val intent = getIntent()
         printLog(intent)
-        context.startActivity(intent)
+        LibraryCenter.startActivity(context, intent)
     }
 
     private fun printLog(intent: Intent) {

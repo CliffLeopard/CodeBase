@@ -11,8 +11,8 @@ import java.util.*
  * email:gaoguanling@360.cn
  * link:
  */
-class LogClassLoader(dexPath: String, son: ClassLoader?, parent: ClassLoader?) :
-    CodeClassLoader(dexPath, son, parent) {
+class LogClassLoader(dexPath: String, son: ClassLoader?) :
+    CodeClassLoader(dexPath, son) {
     companion object {
         const val tag = "LogClassLoader"
     }

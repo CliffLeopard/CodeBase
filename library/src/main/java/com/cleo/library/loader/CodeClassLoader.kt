@@ -11,15 +11,27 @@ import java.util.*
  * time:17:29
  * email:gaoguanling@360.cn
  * link:
+ *
  * PathClassLoader -> ShadowClassLoader -> CodeClassLoader -> BootClassLoader
  */
-open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, parent: ClassLoader?) :
-    PathClassLoader(dexPath, parent) {
+open class CodeClassLoader(dexPath: String, private val son: ClassLoader?) :
+    PathClassLoader(dexPath, son?.parent) {
+
     companion object {
         const val tag = "CodeClassLoader"
     }
 
+    private val shadowClassLoader: ShadowClassLoader by lazy {
+        ShadowClassLoader(this)
+    }
+
     private val dynamicClass = mutableMapOf<String, DynamicClassData>()
+
+    fun inject() {
+        val field = ReflectUtils.getField(son?.javaClass, "parent")
+        field.isAccessible = true
+        field.set(son, shadowClassLoader)
+    }
 
     fun addDynamicActivity(placeHolderName: String, targetName: String) {
         dynamicClass[placeHolderName] = DynamicClassData(placeHolderName, targetName)
@@ -85,5 +97,23 @@ open class CodeClassLoader(dexPath: String, private val son: ClassLoader?, paren
             return super.findClass(it.targetName)
         }
         return super.findClass(name)
+    }
+
+    /**
+     * 使用ShadowClassLoader来修改loadClass传递链
+     * 使得只有通过CodeClassLoader加载的类中加载新类时才会调用CodeClassLoader的loadClass
+     */
+    inner class ShadowClassLoader(private val theParent: CodeClassLoader) : PathClassLoader("", theParent) {
+        override fun loadClass(name: String?, resolve: Boolean): Class<*>? {
+            return theParent.loadClassFromChildClassLoader(name, resolve)
+        }
+
+        override fun getResource(name: String?): URL? {
+            return theParent.getResourceFromChildClassLoader(name)
+        }
+
+        override fun getResources(name: String?): Enumeration<URL> {
+            return theParent.getResourcesFromChildClassLoader(name)
+        }
     }
 }

@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.cleo.library.loader.CodeClassLoader
 import com.cleo.library.loader.LogClassLoader
-import com.cleo.library.loader.ShadowClassLoader
 import com.cleo.library.util.AssetsHelper
-import com.cleo.library.util.ReflectUtils
-import dalvik.system.BaseDexClassLoader
 import java.io.File
 
 /**
@@ -23,7 +20,7 @@ object LibraryCenter {
     private lateinit var codeClassLoader: CodeClassLoader
     private val dynamicActivities = mapOf(
         "com.cleo.codebase.cases.loader.replaced.DyKtActivity" to "this.is.dynamic.activity",
-        "com.cleo.codebase.cases.service.DynamicService"       to "this.is.dynamic.service"
+        "com.cleo.codebase.cases.service.DynamicService" to "this.is.dynamic.service"
     )
 
     fun initLibrary(context: Context) {
@@ -34,7 +31,7 @@ object LibraryCenter {
         }
     }
 
-    fun startService(context: Context,intent: Intent) {
+    fun startService(context: Context, intent: Intent) {
         val componentName = intent.component
         if (componentName != null) {
             val className = componentName.className
@@ -66,13 +63,8 @@ object LibraryCenter {
     private fun changeClassLoader() {
         val systemClassLoader = this.javaClass.classLoader
         val dexPath = addDynamicClassByDx()
-        codeClassLoader =
-            LogClassLoader(dexPath, systemClassLoader, systemClassLoader?.parent)
-        val shadowClassLoader = ShadowClassLoader(codeClassLoader)
-
-        val field = ReflectUtils.getField(systemClassLoader?.javaClass, "parent")
-        field.isAccessible = true
-        field.set(systemClassLoader, shadowClassLoader)
+        codeClassLoader = LogClassLoader(dexPath, systemClassLoader)
+        codeClassLoader.inject()
     }
 
     /**
