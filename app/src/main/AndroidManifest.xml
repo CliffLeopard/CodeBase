@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cleo.codebase">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
@@ -21,9 +22,17 @@
         android:theme="@style/Theme.CodeBase"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".coroutine.flow.FlowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".coroutine.channel.ChannelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".coroutine.CoroutineActivity"
+            android:exported="false" />
+        <activity
             android:name=".cases.web.WebViewActivity"
             android:exported="false" />
-
         <activity
             android:name=".cases.GlideActivity"
             android:exported="false" />
@@ -77,6 +86,7 @@
         <activity
             android:name="this.is.dynamic.activity"
             android:exported="true" />
+
         <provider
             android:name=".cases.provider.SimpleSliceProvider"
             android:authorities="com.cleo.codebase.cases.provider"
@@ -104,8 +114,7 @@
         <service
             android:name=".cases.service.ForegroundService"
             android:enabled="true"
-            android:exported="true"/>
-
+            android:exported="true" />
         <service
             android:name=".cases.service.SimpleService"
             android:enabled="true"
@@ -115,6 +124,5 @@
             android:enabled="true"
             android:exported="false" />
     </application>
-
 
 </manifest>

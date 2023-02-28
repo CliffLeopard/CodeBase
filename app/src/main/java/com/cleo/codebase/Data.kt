@@ -9,6 +9,9 @@ import com.cleo.codebase.cases.service.AboutServiceActivity
 import com.cleo.codebase.cases.start.StartActivity
 import com.cleo.codebase.cases.theme.ThemeChangeActivity
 import com.cleo.codebase.cases.web.WebViewActivity
+import com.cleo.codebase.coroutine.CoroutineActivity
+import com.cleo.codebase.coroutine.channel.ChannelActivity
+import com.cleo.codebase.coroutine.flow.FlowActivity
 
 /**
  * author:gaoguanling
@@ -27,7 +30,10 @@ object Data {
         "ContentProvider测试用例" to AboutProviderActivity::class.java.name,
         "关于主题资源" to ThemeChangeActivity::class.java.name,
         "Glide" to GlideActivity::class.java.name,
-        "WebView池化问题" to WebViewActivity::class.java.name
+        "WebView池化问题" to WebViewActivity::class.java.name,
+        "协程" to CoroutineActivity::class.java.name,
+        "Flow" to FlowActivity::class.java.name,
+        "Chanel" to ChannelActivity::class.java.name,
     )
     const val pkgName = "com.cleo.codebase"
 }

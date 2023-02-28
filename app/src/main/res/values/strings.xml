@@ -16,4 +16,9 @@
     <string name="notification_title">NotificationTittle</string>
     <string name="notification_message">NotificationMessage</string>
     <string name="ticker_text">NotificationText</string>
+    <string name="normal_case">Normal Case</string>
+    <string name="close_case">Close Case</string>
+    <string name="send_case">Send</string>
+    <string name="send_finish">Send Finish</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.cleo.library.loader
 
+import android.util.Log
 import com.cleo.library.util.ReflectUtils
 import dalvik.system.PathClassLoader
 import java.net.URL

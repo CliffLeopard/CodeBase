@@ -16,4 +16,4 @@ if (PUBLISH == "false") {
 include ':plugin'
 include ':library'
 include ':plugin-app'
-include ':test'
+//include ':test'
