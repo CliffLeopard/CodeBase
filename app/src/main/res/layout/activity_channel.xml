@@ -33,4 +33,13 @@
         android:layout_height="48dp"
         android:gravity="center"
         android:text="@string/send_finish" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/producer_case"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="@string/producer_case" />
+
+
 </LinearLayout>

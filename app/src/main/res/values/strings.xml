@@ -20,5 +20,6 @@
     <string name="close_case">Close Case</string>
     <string name="send_case">Send</string>
     <string name="send_finish">Send Finish</string>
+    <string name="producer_case">Producer</string>
 
 </resources>

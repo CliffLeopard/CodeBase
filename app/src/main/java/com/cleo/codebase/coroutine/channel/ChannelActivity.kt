@@ -5,9 +5,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.cleo.codebase.databinding.ActivityChannelBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.onSuccess
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.launch
 
 class ChannelActivity : AppCompatActivity() {
@@ -40,13 +42,16 @@ class ChannelActivity : AppCompatActivity() {
                     valueNow++
                 }
             }
-
         }
 
         binding.sendFinish.setOnClickListener {
             lifecycleScope.launch {
                 outChanel.close()
             }
+        }
+
+        binding.producerCase.setOnClickListener {
+            producer()
         }
     }
 
@@ -74,6 +79,16 @@ class ChannelActivity : AppCompatActivity() {
             for (y in channel) println(y)
             println("Done!")
         }
+    }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun producer() {
+        lifecycleScope.launch {
+            val squares = produce {
+                for (x in 1..5) send(x * x)
+            }
+            squares.consumeEach { println(it) }
+            println("Done!")
+        }
     }
 }
