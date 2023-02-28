@@ -5,11 +5,13 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.cleo.codebase.databinding.ActivityChannelBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.onSuccess
 import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ChannelActivity : AppCompatActivity() {
@@ -38,7 +40,9 @@ class ChannelActivity : AppCompatActivity() {
 
         binding.sendCase.setOnClickListener {
             lifecycleScope.launch {
+                Log.e("GGL", "lifecycleScope thread:${Thread.currentThread()}")
                 outChanel.trySend(valueNow).onSuccess {
+                    Log.e("GGL", "send  success thread:${Thread.currentThread()}")
                     valueNow++
                 }
             }

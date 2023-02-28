@@ -23,6 +23,8 @@ class PropertyDelegate {
 
     class Example {
         var p: String by Delegate()
+
+        // set get
         var z: String = ""
             set(value) {
                 field = "${value}_"
@@ -30,6 +32,11 @@ class PropertyDelegate {
             get() {
                 return "$field+"
             }
+
+        // by lazy
+        val m: String by lazy {
+            "mmm" + "__" + "kkm"
+        }
     }
 
     class Main {
@@ -40,6 +47,7 @@ class PropertyDelegate {
                 println(e.p)
                 e.p = "设置值"
                 println(e.p)
+                println(e.m)
             }
         }
     }
