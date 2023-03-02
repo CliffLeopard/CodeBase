@@ -19,7 +19,7 @@ class ByMap {
     class Foo {
         var notNullBar: String by Delegates.notNull()
         var modifyVerify: String by Delegates.vetoable("") { property, old, new ->
-            print("property: ${property.name} ${property.isConst} old:$old new:$new")
+            println("property: ${property.name} ${property.isConst} old:$old new:$new")
             true
         }
     }
@@ -45,6 +45,8 @@ class ByMap {
                 foo.notNullBar = "bar"
                 println(foo.notNullBar)
                 foo.modifyVerify = "Hello"
+
+                "asdfadsfas".also(::println)
             }
         }
     }

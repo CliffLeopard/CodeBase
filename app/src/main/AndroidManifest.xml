@@ -22,6 +22,9 @@
         android:theme="@style/Theme.CodeBase"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".webview.BrowserActivity"
+            android:exported="false" />
+        <activity
             android:name=".coroutine.flow.FlowActivity"
             android:exported="false" />
         <activity

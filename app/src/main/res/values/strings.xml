@@ -21,5 +21,6 @@
     <string name="send_case">Send</string>
     <string name="send_finish">Send Finish</string>
     <string name="producer_case">Producer</string>
+    <string name="action">Long Screen Short</string>
 
 </resources>
