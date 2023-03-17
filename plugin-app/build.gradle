@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -38,6 +39,7 @@ dependencies {
     implementation "androidx.activity:activity-compose:$activity_compose"
     implementation "com.google.android.material:material:$material"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation 'androidx.core:core-ktx:+'
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"

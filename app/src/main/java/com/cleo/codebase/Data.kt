@@ -12,6 +12,7 @@ import com.cleo.codebase.cases.web.WebViewActivity
 import com.cleo.codebase.coroutine.CoroutineActivity
 import com.cleo.codebase.coroutine.channel.ChannelActivity
 import com.cleo.codebase.coroutine.flow.FlowActivity
+import com.cleo.codebase.event.TouchEventActivity
 import com.cleo.codebase.webview.BrowserActivity
 
 /**
@@ -35,7 +36,8 @@ object Data {
         "协程" to CoroutineActivity::class.java.name,
         "Flow" to FlowActivity::class.java.name,
         "Chanel" to ChannelActivity::class.java.name,
-        "WebView" to BrowserActivity::class.java.name
+        "WebView" to BrowserActivity::class.java.name,
+        "TouchEvent" to TouchEventActivity::class.java.name
     )
     const val pkgName = "com.cleo.codebase"
 }

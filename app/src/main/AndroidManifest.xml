@@ -22,6 +22,9 @@
         android:theme="@style/Theme.CodeBase"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".event.TouchEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".webview.BrowserActivity"
             android:exported="false" />
         <activity
